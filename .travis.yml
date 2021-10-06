@@ -1,0 +1,42 @@
+dist: xenial
+language: java
+sudo: true
+services:
+  - docker
+env:
+  global:
+    - SERVICE_NAME=helloworld-service
+    - REVISION=$(git rev-parse --short ${TRAVIS_COMMIT})
+
+cache:
+  directories:
+    - build-cache
+
+install:
+  - docker-compose -f docker-compose.yml build
+
+before_script:
+  - docker-compose -f docker-compose.yml up -d ${SERVICE_NAME}
+
+
+before_cache:
+  - docker-compose -f docker-compose.yml run --rm -v `pwd`/build-cache:/app/build-cache ${SERVICE_NAME} bash docker-utils.sh save-cache
+
+#deploy:
+#  - provider: script
+#    skip_cleanup: true
+#    script: ./.travis-deploy.sh docker
+#    on:
+#      all_branches: true
+#      condition: ($TRAVIS_EVENT_TYPE == push) && ($TRAVIS_BRANCH =~ ^(staging|master))
+
+
+after_script:
+  # view running containers
+  - docker-compose ps
+  # view stats of running containers
+  - docker stats --no-stream
+  # view logs of running application
+  - docker-compose logs ${SERVICE_NAME}
+  # list initialized log files of running application
+  - docker-compose exec ${SERVICE_NAME} ls -lh log
