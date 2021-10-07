@@ -23,6 +23,7 @@ before_script:
 
 
 before_cache:
+  - docker-compose -f docker-compose.yml run --rm -v `pwd`/build-cache:/app/build-cache ${SERVICE_NAME} ls
   - docker-compose -f docker-compose.yml run --rm -v `pwd`/build-cache:/app/build-cache ${SERVICE_NAME} bash docker-utils.sh save-cache
 
 #deploy:
