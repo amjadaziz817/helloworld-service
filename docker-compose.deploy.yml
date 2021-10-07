@@ -3,3 +3,4 @@ services:
   helloworld-service:
     build:
       target: application
+    image: hello/world-service-deploy

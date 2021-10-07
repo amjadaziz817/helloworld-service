@@ -5,4 +5,5 @@ services:
     build:
       context: .
       target: builder
+    image: hello/world-service
     restart: on-failure
