@@ -3,7 +3,7 @@
 set -e
 
 GRADLE_CACHE_ARCHIVE='build-cache/gradle.tar.gz'
-GRADLE_CACHE_DIR="$HOME/.gradle/"
+GRADLE_CACHE_DIR="$HOME/.gradle/caches/"
 
 function __load_cache {
   if [ -f "$GRADLE_CACHE_ARCHIVE" ]

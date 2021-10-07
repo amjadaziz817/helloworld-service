@@ -9,4 +9,3 @@ services:
       target: builder
     image: hello/world-service
     restart: on-failure
-    entrypoint: APP_ENV
