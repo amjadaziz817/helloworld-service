@@ -4,6 +4,9 @@ services:
   helloworld-service:
     build:
       context: .
+      args:
+        VERSION: ${REVISION:-TRAVIS_COMMIT}
       target: builder
     image: hello/world-service
     restart: on-failure
+    entrypoint: APP_ENV
