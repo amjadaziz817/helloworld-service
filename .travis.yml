@@ -1,5 +1,5 @@
 dist: xenial
-language: java
+language: minimal
 sudo: true
 services:
   - docker
