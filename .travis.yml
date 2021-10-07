@@ -1,6 +1,6 @@
 dist: xenial
 language: java
-sudo: false
+sudo: true
 services:
   - docker
 env:
@@ -13,10 +13,13 @@ cache:
     - build-cache
 
 install:
+  # build image for travis testing
   - docker-compose -f docker-compose.yml build
+  # build deployment image
+  - docker-compose -f docker-compose.yml -f docker-compose.deploy.yml build
 
 before_script:
-  - docker-compose -f docker-compose.yml up -d ${SERVICE_NAME}
+  - docker-compose -f docker-compose.yml -f docker-compose.deploy.yml up -d ${SERVICE_NAME}
 
 
 before_cache:

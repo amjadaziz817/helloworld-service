@@ -1,8 +1,8 @@
 version: '3.7'
 
-
 services:
   helloworld-service:
-    build: .
-    ports:
-    - "8080-8080"
+    build:
+      context: .
+      target: builder
+    restart: on-failure

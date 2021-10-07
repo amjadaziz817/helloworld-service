@@ -12,7 +12,7 @@ public class HelloWorldController {
   @GetMapping("")
   public HttpResponse sayHello() {
      HttpResponse<String> response = HttpResponseSuccess.<String>builder()
-         .data("Hello World-modified")
+         .data("Hello World")
          .build();
      return response;
   }
