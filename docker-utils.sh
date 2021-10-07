@@ -17,6 +17,14 @@ function __load_cache {
 }
 
 function __save_cache {
+  echo "Inside save cache with $GRADLE_CACHE_DIR"
+  echo "Home directory ==> ${PWD}, $HOME"
+  echo "Inside home"
+  ls  -al "$HOME"
+  echo "Inside gradle"
+  ls  -al "$HOME/.gradle"
+  echo "inside /gradle/caches"
+  ls  -al "$HOME/.gradle/caches/"
   # gzip without timestamps for consistent checksum
   # exclude dynamic files https://docs.travis-ci.com/user/languages/java/#caching
   GZIP=-n tar -czf $GRADLE_CACHE_ARCHIVE --exclude='./modules-2/modules-2.lock' --exclude='./*/plugin-resolution' -C "$GRADLE_CACHE_DIR" .
