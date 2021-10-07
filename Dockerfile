@@ -9,7 +9,6 @@ COPY . .
 RUN bash docker-utils.sh load-cache
 
 RUN ./gradlew --no-daemon --console=plain clean build
-RUN bash docker-utils.sh save-cache
 
 FROM adoptopenjdk:11-jre-hotspot as application
 WORKDIR /app
