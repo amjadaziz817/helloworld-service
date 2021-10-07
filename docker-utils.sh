@@ -6,9 +6,9 @@ GRADLE_CACHE_ARCHIVE='build-cache/gradle.tar.gz'
 GRADLE_CACHE_DIR="$HOME/.gradle/caches/"
 
 function __load_cache {
+  mkdir -p "$GRADLE_CACHE_DIR"
   if [ -f "$GRADLE_CACHE_ARCHIVE" ]
   then
-  mkdir -p "$GRADLE_CACHE_DIR"
   tar -xzf $GRADLE_CACHE_ARCHIVE -C "$GRADLE_CACHE_DIR"
   echo "Extracted $GRADLE_CACHE_ARCHIVE to $GRADLE_CACHE_DIR"
   else
