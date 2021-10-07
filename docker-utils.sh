@@ -22,8 +22,10 @@ function __save_cache {
   echo "Inside home"
   ls  -al "$HOME"
   echo "Inside gradle"
-  ls  -al "$HOME/.gradle"
-
+  ls  -al "$HOME/.gradle/"
+  cd "$HOME/.gradle/"
+  ls -al .
+  cd "/app"
   echo "Inside gradle/caches"
   ls  -al "$HOME/.gradle/caches/"
   # gzip without timestamps for consistent checksum
