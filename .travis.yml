@@ -16,11 +16,13 @@ install:
   # build image for travis testing
   - docker-compose -f docker-compose.yml build
   # build deployment image
-  - docker-compose -f docker-compose.yml -f docker-compose.deploy.yml build
+#  - docker-compose -f docker-compose.yml -f docker-compose.deploy.yml build
 
-before_script:
-  - docker-compose -f docker-compose.yml -f docker-compose.deploy.yml up -d ${SERVICE_NAME}
+#before_script:
+#  - docker-compose -f docker-compose.yml -f docker-compose.deploy.yml up -d ${SERVICE_NAME}
 
+#script:
+#  - docker inspect --format "{{json .State.Health.Status }}" $(docker-compose ps -q ${SERVICE_NAME}) | { read status; test $status = "\"healthy\""; }
 
 before_cache:
   - docker-compose -f docker-compose.yml run --rm -v `pwd`/build-cache:/app/build-cache ${SERVICE_NAME} ls
